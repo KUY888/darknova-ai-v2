@@ -63,11 +63,12 @@ jobs:
         run: gradle assembleDebug --no-daemon --stacktrace
 
       - name: Show signing SHA-256 fingerprint
+        continue-on-error: true
         run: |
           {
             echo "### Debug signing SHA-256 (for Digital Asset Links)"
             echo '```'
-            keytool -list -v -keystore ~/.android/debug.keystore -alias androiddebugkey -storepass android -keypass android | grep "SHA256:"
+            keytool -list -v -keystore ~/.android/debug.keystore -alias androiddebugkey -storepass android -keypass android | grep "SHA256:" || true
             echo '```'
           } >> "$GITHUB_STEP_SUMMARY"
 
