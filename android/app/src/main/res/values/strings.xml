@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">DARKNOVA AI V2</string>
+    <string name="default_url">https://darknova-ai-v2.onrender.com/</string>
+    <string name="asset_statements">[{\"relation\": [\"delegate_permission/common.handle_all_urls\"], \"target\": {\"namespace\": \"web\", \"site\": \"https://darknova-ai-v2.onrender.com\"}}]</string>
+</resources>

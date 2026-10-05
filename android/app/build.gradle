@@ -1,0 +1,25 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'com.kuy888.darknovaai'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.kuy888.darknovaai"
+        minSdk 21
+        targetSdk 34
+        versionCode 1
+        versionName "2.0.0"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation 'com.google.androidbrowserhelper:androidbrowserhelper:2.5.0'
+}
