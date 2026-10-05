@@ -45,6 +45,9 @@ SQLAlchemy 2. Tables: `users`, `conversations`, `messages`, `revoked_tokens`. Ta
 All responses: `{"success": true, "data": ...}` or `{"success": false, "error": "..."}`.
 `/health`, `/auth/*`, `/users/*`, `/conversations` (+`?q=` search, `/{id}`, `/{id}/messages`), `/chat`, `/system/status`, `/system/about`. Interactive docs at `/docs`.
 
+## PWA (install as an app)
+`/manifest.webmanifest`, `/sw.js` (served from root for full scope), icons in `app/static/icons/`. The service worker caches only the app shell; API, auth and user data are never cached. Install: open the site over **HTTPS** (or `localhost`) in Chrome → menu → *Install app*, or use the in-app "ติดตั้งแอป" button. Offline: the UI opens but chat needs a connection.
+
 ## Testing
 ```bash
 pytest -q

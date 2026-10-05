@@ -74,3 +74,15 @@ def app_profile_page():
 @app.get("/", include_in_schema=False)
 def index_page():
     return FileResponse(os.path.join(HERE, "static", "index.html"))
+
+
+@app.get("/manifest.webmanifest", include_in_schema=False)
+def pwa_manifest():
+    return FileResponse(os.path.join(HERE, "static", "manifest.webmanifest"), media_type="application/manifest+json")
+
+
+@app.get("/sw.js", include_in_schema=False)
+def pwa_service_worker():
+    # Served from "/" so the worker can control the whole app scope.
+    return FileResponse(os.path.join(HERE, "static", "sw.js"), media_type="application/javascript",
+                        headers={"Cache-Control": "no-cache"})

@@ -1,5 +1,10 @@
 <!doctype html><html lang="th"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>DARKNOVA AI V2</title>
+<meta name="theme-color" content="#0d0d12"><meta name="description" content="DARKNOVA AI V2 — AI Assistant">
+<link rel="manifest" href="/manifest.webmanifest"><link rel="icon" href="/static/icons/icon-192.png">
+<link rel="apple-touch-icon" href="/static/icons/apple-touch-icon.png">
+<meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="DARKNOVA"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <style>
 :root{--bg:#0d0d12;--sb:#111118;--card:#17171f;--bd:#262633;--tx:#ececf3;--mut:#8b8ba3;--red:#ff2a4d;--vio:#8a5cff;--g:linear-gradient(135deg,#ff2a4d,#8a5cff)}
 *{box-sizing:border-box}html,body{height:100%;margin:0}[hidden]{display:none!important}
@@ -66,6 +71,7 @@ input:focus,textarea:focus{border-color:var(--vio)}button{cursor:pointer}button:
 <div id="app" hidden><div id="bd"></div>
 <aside id="side"><div class="brand"><img src="/static/logo.jpg" alt="">DARKNOVA AI</div>
 <button class="pri" id="new">＋ แชทใหม่</button><input id="q" placeholder="ค้นหาแชท…"><div id="list"></div>
+<button id="inst" hidden>📲 ติดตั้งแอป</button>
 <button id="me"><img id="mav" src="/static/logo.jpg" alt=""><span id="mnm">โปรไฟล์</span>⚙</button></aside>
 <section id="main"><div id="bar"><button id="menu">☰</button><div id="ttl">แชทใหม่</div>
 <select id="mode"><option>CHAT</option><option>CODE</option><option>DEBUG</option><option>PLAN</option></select></div>
@@ -153,5 +159,9 @@ $('ps').onclick=async()=>{try{await api('/users/me',{method:'PATCH',json:{userna
 $('af').onchange=async()=>{const f=$('af').files[0];if(!f)return;const fd=new FormData();fd.append('file',f);
  try{await api('/users/me/avatar',{method:'POST',body:fd});showProf()}catch(e){$('perr').textContent=e.message}$('af').value=''};
 $('ad').onclick=async()=>{try{await api('/users/me/avatar',{method:'DELETE'});showProf()}catch(e){$('perr').textContent=e.message}};
+let dp=null;addEventListener('beforeinstallprompt',e=>{e.preventDefault();dp=e;$('inst').hidden=false});
+$('inst').onclick=async()=>{if(!dp)return;dp.prompt();try{await dp.userChoice}catch(e){}dp=null;$('inst').hidden=true};
+addEventListener('appinstalled',()=>{$('inst').hidden=true});
+if('serviceWorker' in navigator)addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));
 if(token)boot();else $('auth').hidden=false;
 </script></body></html>

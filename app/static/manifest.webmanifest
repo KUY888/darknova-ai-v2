@@ -1,0 +1,19 @@
+{
+  "id": "/",
+  "name": "DARKNOVA AI V2",
+  "short_name": "DARKNOVA",
+  "description": "DARKNOVA AI — AI Assistant สำหรับสนทนา เขียนโค้ด Debug และวางแผนโปรเจกต์",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0d0d12",
+  "theme_color": "#0d0d12",
+  "lang": "th",
+  "categories": ["productivity", "utilities"],
+  "icons": [
+    {"src": "/static/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
+    {"src": "/static/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
+    {"src": "/static/icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
+  ]
+}
