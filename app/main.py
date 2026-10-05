@@ -27,6 +27,22 @@ async def lifespan(_: FastAPI):
 
 
 app = FastAPI(title="DARKNOVA AI V2", version="2.0.0", lifespan=lifespan)
+
+
+@app.get("/.well-known/assetlinks.json", include_in_schema=False)
+async def assetlinks():
+    return [
+        {
+            "relation": ["delegate_permission/common.handle_all_urls"],
+            "target": {
+                "namespace": "android_app",
+                "package_name": "com.kuy888.darknovaai",
+                "sha256_cert_fingerprints": [
+                    "REPLACE_WITH_RELEASE_SHA256"
+                ],
+            },
+        }
+    ]
 app.add_middleware(CORSMiddleware, allow_origins=settings.CORS_ORIGINS, allow_credentials=False,
                    allow_methods=["*"], allow_headers=["*"])
 

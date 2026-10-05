@@ -62,6 +62,12 @@ jobs:
         working-directory: android
         run: gradle assembleDebug --no-daemon --stacktrace
 
+
+      - name: Show APK signing certificate
+        run: |
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --print-certs \
+            android/app/build/outputs/apk/debug/app-debug.apk
+
       - name: Show signing SHA-256 fingerprint
         continue-on-error: true
         run: |
